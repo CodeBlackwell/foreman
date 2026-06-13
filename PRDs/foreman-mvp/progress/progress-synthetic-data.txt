@@ -1,0 +1,48 @@
+# Synthetic Data Agent Progress
+# Wave: 1
+# Stories: US-010 to US-013
+
+## Status: NOT_STARTED
+
+## Stories
+
+[ ] US-010: LOTO Safety Procedure Document
+    - [ ] data/raw/safety_loto.md exists with valid frontmatter
+    - [ ] At least 3 top-level sections
+    - [ ] At least 5 numbered steps in Lockout Procedure
+    - [ ] Entity mentions wrapped correctly
+    - [ ] Cross-reference to DOC-003 present
+    - [ ] Typecheck passes
+
+[ ] US-011: Press Maintenance Manual
+    - [ ] data/raw/maintenance_press.md exists with valid frontmatter
+    - [ ] At least 4 top-level sections
+    - [ ] At least 6 numbered steps in Bearing Replacement
+    - [ ] REQUIRES_SAFETY cross-reference to DOC-001 present
+    - [ ] VALIDATES_WITH cross-reference to DOC-003 present
+    - [ ] Typecheck passes
+
+[ ] US-012: QC Inspection Specification
+    - [ ] data/raw/quality_inspection.md exists with valid frontmatter
+    - [ ] At least 3 top-level sections
+    - [ ] Bearing Housing Tolerance subsection present
+    - [ ] At least 2 numeric tolerances with units
+    - [ ] REFERENCES back to DOC-002 present
+    - [ ] Typecheck passes
+
+[ ] US-013: Seed Loader Script
+    - [ ] data/seed.py imports and calls run_pipeline for each .md in data/raw/
+    - [ ] Script prints per-file progress
+    - [ ] Script is idempotent
+    - [ ] just ingest calls python data/seed.py
+    - [ ] Typecheck passes
+
+---
+
+## Notes
+(Agent appends learnings here as it works)
+
+---
+
+## Completion Signal
+(When all stories done and verified, agent writes the delivered tag here)

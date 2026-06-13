@@ -1,0 +1,53 @@
+# Ingestion Agent Progress
+# Wave: 1
+# Stories: US-020 to US-023
+
+## Status: NOT_STARTED
+
+## Stories
+
+[ ] US-020: Parser and Classifier
+    - [ ] src/ingestion/parser.py exports parse_document
+    - [ ] ParsedDocument, ParsedSection, ParsedStep types defined
+    - [ ] Cross-ref tags parsed correctly
+    - [ ] Entity mentions parsed correctly
+    - [ ] src/ingestion/classifier.py exports classify_step
+    - [ ] tests/test_parser.py passes (3+ tests)
+    - [ ] Typecheck passes
+
+[ ] US-021: Context Generator and Recursive Summarizer
+    - [ ] generate_step_context with prompt caching
+    - [ ] generate_section_summary
+    - [ ] generate_document_summary
+    - [ ] generate_term_definitions
+    - [ ] Context generation skipped for existing Step with context
+    - [ ] Typecheck passes
+
+[ ] US-022: Voyage Embedder
+    - [ ] embed_text with 1024-dim validation
+    - [ ] embed_step (context + content concatenated)
+    - [ ] embed_batch with 128-per-request cap
+    - [ ] Skip re-embedding for existing Steps with embeddings
+    - [ ] tests/test_embedder.py passes with mocked Voyage
+    - [ ] Typecheck passes
+
+[ ] US-023: Graph Builder (Cypher MERGE and Idempotency)
+    - [ ] build_graph with EnrichedStep input
+    - [ ] All Cypher uses MERGE (idempotent)
+    - [ ] Tree edges created
+    - [ ] SUMMARIZES edges created
+    - [ ] MENTIONS edges to Entity nodes created
+    - [ ] Cross-domain edges created with late binding for missing targets
+    - [ ] src/ingestion/pipeline.py exports run_pipeline
+    - [ ] tests/test_graph_builder.py passes
+    - [ ] Typecheck passes
+
+---
+
+## Notes
+(Agent appends learnings here as it works)
+
+---
+
+## Completion Signal
+(When all stories done and verified, agent writes the delivered tag here)

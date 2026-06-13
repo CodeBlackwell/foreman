@@ -1,0 +1,43 @@
+# API Core Agent Progress
+# Wave: 2
+# Stories: US-030 to US-032
+
+## Status: NOT_STARTED
+
+## Stories
+
+[ ] US-030: FastAPI App Scaffold
+    - [ ] src/api/app.py with lifespan and app.state.db
+    - [ ] src/api/dependencies.py with get_db
+    - [ ] CORS middleware configured
+    - [ ] GET /health returns 200
+    - [ ] Router and retrieve routes mounted
+    - [ ] Typecheck passes
+
+[ ] US-031: Router Endpoint
+    - [ ] POST /route accepts QueryRequest
+    - [ ] Keyword routing via classify_by_keyword
+    - [ ] LLM fallback via Anthropic Haiku with max_tokens=20
+    - [ ] Default to Maintenance on LLM failure
+    - [ ] tests/test_router.py passes (3+ tests)
+    - [ ] Typecheck passes
+
+[ ] US-032: Retrieve Endpoint
+    - [ ] POST /retrieve accepts question, entry_domain, top_k
+    - [ ] Vector search scoped to entry domain
+    - [ ] Graph traversal via REQUIRES_SAFETY, VALIDATES_WITH, REFERENCES (one hop)
+    - [ ] Deduplication by content_hash
+    - [ ] Results grouped into RetrievalResult by domain
+    - [ ] below_threshold flag set when all scores < 0.70
+    - [ ] tests/test_retrieve.py passes with mocked Neo4jClient
+    - [ ] Typecheck passes
+
+---
+
+## Notes
+(Agent appends learnings here as it works)
+
+---
+
+## Completion Signal
+(When all stories done and verified, agent writes the delivered tag here)

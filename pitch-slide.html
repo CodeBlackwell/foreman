@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>foreman — pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:               #ffffff;
+    --ink:              #0a0a0a;
+    --ink-mid:          #6b6862;
+    --ink-faint:        #8c8780;
+    --wash:             #e5e5e5;
+    --border:           #0a0a0a;
+    --border-light:     #e0ddd9;
+    --accent:           #d93326;
+    --gold:             #c9a84c;
+    --green:            #2d7a42;
+    --purple:           #803794;
+    --navy:             #192a56;
+    --shadow:           3px 3px 0 #0a0a0a;
+    --shadow-sm:        2px 2px 0 #0a0a0a;
+    --vermillion-light: #f5e6e4;
+    --gold-light:       #faf5e8;
+    --green-light:      #ecf5ef;
+    --purple-light:     #f3ecf5;
+    --navy-light:       #eef0f6;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--wash);
+    color: var(--ink);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .slide {
+    width: 1280px;
+    height: 720px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .header {
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--ink);
+    padding: 5px 12px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tagline {
+    font-size: 13px;
+    color: var(--ink-mid);
+  }
+
+  .domain-badges {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+  }
+
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+  }
+
+  .badge.safety { background: var(--vermillion-light); color: var(--accent); box-shadow: var(--shadow-sm); }
+  .badge.maint  { background: var(--gold-light);       color: #7a6020;       box-shadow: var(--shadow-sm); }
+  .badge.qc     { background: var(--green-light);      color: var(--green);  box-shadow: var(--shadow-sm); }
+
+  /* ── Body ── */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 460px;
+    overflow: hidden;
+  }
+
+  /* ── Left: Q/A cards ── */
+  .left {
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .col-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 12px 28px 10px;
+    border-bottom: 1px solid var(--border-light);
+    background: var(--bg);
+  }
+
+  .qa-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Single Q/A card ── */
+  .qa-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .qa-card:last-child { border-bottom: none; }
+
+  .q-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 20px 10px 20px;
+  }
+
+  .scenario-chip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .chip-emergency { color: var(--accent); border-color: var(--accent); background: var(--vermillion-light); }
+  .chip-cross     { color: #7a6020;       border-color: var(--gold);   background: var(--gold-light); }
+  .chip-abstain   { color: var(--purple); border-color: var(--purple); background: var(--purple-light); }
+
+  .q-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .a-row {
+    padding: 0 20px 12px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+  }
+
+  /* Normal answer line */
+  .a-line {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    flex-wrap: wrap;
+    font-size: 11px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  .cite {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    font-weight: 600;
+    padding: 1px 5px;
+    border: 1px solid;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .cite.safety { color: var(--accent); border-color: var(--accent); background: var(--vermillion-light); }
+  .cite.maint  { color: #7a6020;       border-color: var(--gold);   background: var(--gold-light); }
+  .cite.qc     { color: var(--green);  border-color: var(--green);  background: var(--green-light); }
+  .cite.ehs    { color: var(--navy);   border-color: var(--navy);   background: var(--navy-light); }
+
+  /* Abstain answer */
+  .a-abstain {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--purple-light);
+    border: 1px solid var(--purple);
+    border-left: 3px solid var(--purple);
+  }
+
+  .abstain-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .abstain-text {
+    font-size: 11px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .abstain-text strong {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--purple);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  /* Emergency card accent bar */
+  .qa-card.emergency { border-left: 3px solid var(--accent); }
+  .qa-card.cross     { border-left: 3px solid var(--gold); }
+  .qa-card.abstain   { border-left: 3px solid var(--purple); }
+
+  /* ── Right: Business value ── */
+  .right {
+    padding: 28px 36px 28px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+
+  .headline {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .headline em { font-style: normal; color: var(--accent); }
+
+  .sub {
+    font-size: 12.5px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .value-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .value-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .value-chip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .value-chip.red    { color: var(--accent); border-color: var(--accent); background: var(--vermillion-light); box-shadow: var(--shadow-sm); }
+  .value-chip.gold   { color: #7a6020;       border-color: var(--gold);   background: var(--gold-light);       box-shadow: var(--shadow-sm); }
+  .value-chip.green  { color: var(--green);  border-color: var(--green);  background: var(--green-light);      box-shadow: var(--shadow-sm); }
+  .value-chip.navy   { color: var(--navy);   border-color: var(--navy);   background: var(--navy-light);       box-shadow: var(--shadow-sm); }
+
+  .value-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .value-desc {
+    font-size: 11.5px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    padding: 13px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--ink-mid);
+  }
+
+  .trust-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--ink);
+    flex-shrink: 0;
+  }
+
+  .footer-right {
+    margin-left: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- Header -->
+  <div class="header">
+    <span class="logo">foreman</span>
+    <span class="tagline">Document Intelligence for the Shop Floor</span>
+    <div class="domain-badges">
+      <span class="badge safety">Safety</span>
+      <span class="badge maint">Maintenance</span>
+      <span class="badge qc">Quality Control</span>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <!-- Left: Business value -->
+    <div class="right">
+      <p class="col-label">Real questions. Real answers.</p>
+      <div class="qa-list">
+
+        <!-- Card 1: Emergency -->
+        <div class="qa-card emergency">
+          <div class="q-row">
+            <span class="scenario-chip chip-emergency">Emergency</span>
+            <p class="q-text">"A worker just got hydraulic fluid in their eyes on Line 3. What do I do right now?"</p>
+          </div>
+          <div class="a-row">
+            <div class="a-line">
+              Move to the nearest eyewash station immediately (Bay 3, column D).
+              <span class="cite safety">Safety · ERP-07 §1.2</span>
+            </div>
+            <div class="a-line">
+              Flush continuously for 15 minutes. Do not rub.
+              <span class="cite ehs">EHS · SDS-H44 §4.1</span>
+            </div>
+            <div class="a-line">
+              Call site medic at ext. 2911. Notify shift supervisor immediately.
+              <span class="cite safety">Safety · ERP-07 §1.4</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Cross-domain -->
+        <div class="qa-card cross">
+          <div class="q-row">
+            <span class="scenario-chip chip-cross">Cross-Domain</span>
+            <p class="q-text">"How do I safely replace the bearing on Press 4?"</p>
+          </div>
+          <div class="a-row">
+            <div class="a-line">
+              Lock out Press 4 before any work begins.
+              <span class="cite safety">Safety · LOTO-04 §2.1</span>
+            </div>
+            <div class="a-line">
+              Replace bearing per torque spec (40 Nm, Grade 8 fasteners).
+              <span class="cite maint">Maint · PM-112 §5.3</span>
+            </div>
+            <div class="a-line">
+              Verify housing tolerance (±0.02 mm) before returning to service.
+              <span class="cite qc">QC · IS-209 §3.1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Abstain -->
+        <div class="qa-card abstain">
+          <div class="q-row">
+            <span class="scenario-chip chip-abstain">Not Documented</span>
+            <p class="q-text">"Can I use the spare hydraulic line from Cell 7 as a temporary fix on Press 4?"</p>
+          </div>
+          <div class="a-row">
+            <div class="a-abstain">
+              <span class="abstain-icon">⊘</span>
+              <div class="abstain-text">
+                <strong>Cannot confirm. Do not proceed.</strong>
+                No approved substitution procedure found for this component combination.
+                Cross-referencing PM-112 and PS-034 returns no documented authorization.
+                Escalate to your maintenance engineer before continuing.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right: Q/A scenarios -->
+    <div class="left">
+      <div>
+        <p class="section-label">The Business Case</p>
+        <h1 class="headline">Stop trading <em>speed</em><br>for <em>safety.</em></h1>
+        <p class="sub">
+          Supervisors today make judgment calls when documentation is split across manuals.
+          Foreman closes that gap: one question, one answer, every source cited.
+        </p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="value-grid">
+        <div class="value-item">
+          <span class="value-chip red">Risk</span>
+          <div>
+            <p class="value-title">Eliminate undocumented shortcuts</p>
+            <p class="value-desc">When a full procedure spans three manuals, supervisors approximate. Foreman surfaces the complete answer in seconds, with every source document cited.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <span class="value-chip gold">Time</span>
+          <div>
+            <p class="value-title">Minutes to seconds per incident</p>
+            <p class="value-desc">Cross-referencing safety, maintenance, and QC manuals manually takes 10 to 20 minutes. In an emergency, that gap is the difference between a near-miss and a recordable.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <span class="value-chip green">Audit</span>
+          <div>
+            <p class="value-title">Every answer is traceable to the revision</p>
+            <p class="value-desc">Citations link to the exact document, section, and revision. When procedures change, answers change. No tribal knowledge, no stale printouts.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <span class="value-chip navy">Trust</span>
+          <div>
+            <p class="value-title">Refuses to guess on safety-critical procedures</p>
+            <p class="value-desc">When documentation does not cover the scenario, Foreman says so and stops. It will not fabricate a procedure. That refusal is the feature, not the limitation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="trust-item"><span class="trust-dot"></span>Cites exact document and section on every response</div>
+    <div class="trust-item"><span class="trust-dot"></span>Abstains rather than guessing on undocumented procedures</div>
+    <div class="trust-item"><span class="trust-dot"></span>Answers cross safety, maintenance, and QC in a single query</div>
+    <span class="footer-right">Confidential — Design Phase</span>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+# Polish Agent Progress
+# Wave: 4
+# Stories: US-080 to US-083
+
+## Status: NOT_STARTED
+
+## Stories
+
+[ ] US-080: Loading and Error States
+    - [ ] Skeleton loader during in-flight queries
+    - [ ] Network/5xx error renders with retry button
+    - [ ] 4xx error renders with rephrase message (no retry)
+    - [ ] Error state clears on new submission
+    - [ ] Typecheck passes
+    - [ ] Verify changes work in browser
+
+[ ] US-081: Abstain State UI Refinement
+    - [ ] Amber left border and warning triangle icon
+    - [ ] Correct abstain message text
+    - [ ] abstain_reason rendered in smaller text when present
+    - [ ] Tooltip on warning icon explaining abstain policy
+    - [ ] Typecheck passes
+    - [ ] Verify changes work in browser
+
+[ ] US-082: Origin Badge and Domain Color Accessibility
+    - [ ] Domain blocks use color AND icon AND text label
+    - [ ] Origin badges use color AND text (not color alone)
+    - [ ] WCAG AA contrast verified visually
+    - [ ] frontend/src/components/OriginBadge.tsx extracted as standalone
+    - [ ] Typecheck passes
+    - [ ] Verify changes work in browser
+
+[ ] US-083: End-to-End Smoke Test
+    - [ ] docs/smoke-test.md created with 10-step checklist
+    - [ ] All 10 steps pass on local stack
+    - [ ] No dash punctuation in the document
+    - [ ] No backend files modified
+
+---
+
+## Notes
+(Agent appends learnings here as it works)
+
+---
+
+## Completion Signal
+(When all stories done and verified, agent writes the delivered tag here)

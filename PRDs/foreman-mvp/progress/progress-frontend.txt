@@ -1,0 +1,53 @@
+# Frontend Agent Progress
+# Wave: 3
+# Stories: US-050 to US-053
+
+## Status: NOT_STARTED
+
+## Stories
+
+[ ] US-050: Vite + React Scaffold
+    - [ ] frontend/ is Vite + React + TypeScript project
+    - [ ] Tailwind configured
+    - [ ] frontend/src/types/api.ts with TypeScript interfaces
+    - [ ] frontend/src/api/client.ts exports askQuestion
+    - [ ] npm run dev starts without errors
+    - [ ] npm run build succeeds
+    - [ ] Verify changes work in browser
+
+[ ] US-051: Query Input Component
+    - [ ] frontend/src/components/QueryInput.tsx renders textarea and button
+    - [ ] Loading state disables button, shows "Thinking..."
+    - [ ] Enter submits, Shift+Enter inserts newline
+    - [ ] Input clears after submit
+    - [ ] Placeholder text correct
+    - [ ] Typecheck passes
+    - [ ] Verify changes work in browser
+
+[ ] US-052: Sectioned Answer Display
+    - [ ] frontend/src/components/AnswerDisplay.tsx accepts QueryResponse
+    - [ ] One block per AnswerSection with colored left border
+    - [ ] "Show sources" toggle per block
+    - [ ] Abstain state renders correctly
+    - [ ] Empty non-abstain state renders error message
+    - [ ] Typecheck passes
+    - [ ] Verify changes work in browser
+
+[ ] US-053: Citation Panel Sidebar
+    - [ ] frontend/src/components/CitationPanel.tsx with slide-in animation
+    - [ ] Citations show doc title, section heading, origin badge
+    - [ ] Origin badge colors match spec
+    - [ ] Close button works
+    - [ ] Clicking "Show sources" on different sections replaces content
+    - [ ] Typecheck passes
+    - [ ] Verify changes work in browser
+
+---
+
+## Notes
+(Agent appends learnings here as it works)
+
+---
+
+## Completion Signal
+(When all stories done and verified, agent writes the delivered tag here)

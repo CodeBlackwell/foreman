@@ -1,0 +1,44 @@
+# Foundation Agent Progress
+# Wave: 0
+# Stories: US-001 to US-004
+
+## Status: NOT_STARTED
+
+## Stories
+
+[ ] US-001: Project Scaffold
+    - [ ] pyproject.toml with all dependencies
+    - [ ] justfile with dev, ingest, test, typecheck targets
+    - [ ] .env.example with all required keys
+    - [ ] All __init__.py files created
+    - [ ] Typecheck passes
+
+[ ] US-002: Neo4j Client and Index Setup
+    - [ ] src/core/neo4j_client.py with Neo4jClient class
+    - [ ] src/core/config.py loading .env keys
+    - [ ] src/core/setup_indexes.py with idempotent index creation
+    - [ ] setup_indexes runnable as module
+    - [ ] Typecheck passes
+
+[ ] US-003: Pydantic Schema Models
+    - [ ] src/models/nodes.py with all node types
+    - [ ] src/models/retrieval.py with EvidenceItem, DomainSection, RetrievalResult
+    - [ ] src/models/api.py with QueryRequest, QueryResponse, AnswerSection, CitationRef
+    - [ ] All models use frozen config
+    - [ ] Typecheck passes
+
+[ ] US-004: Domain Taxonomy
+    - [ ] src/taxonomy/domains.py with DOMAIN_KEYWORDS (10+ per domain)
+    - [ ] classify_by_keyword function
+    - [ ] data/FORMAT.md written with complete markdown format spec
+    - [ ] Typecheck passes
+
+---
+
+## Notes
+(Agent appends learnings here as it works)
+
+---
+
+## Completion Signal
+(When all stories done and verified, agent writes the delivered tag here)

@@ -1,0 +1,44 @@
+# API Answer Agent Progress
+# Wave: 2
+# Stories: US-040 to US-042
+
+## Status: NOT_STARTED
+
+## Stories
+
+[ ] US-040: Evidence Curation
+    - [ ] curate_evidence(result, max_per_domain=3) exported from src/api/curation.py
+    - [ ] Keeps top max_per_domain items by similarity_score
+    - [ ] Drops items below 0.70 threshold
+    - [ ] Removes empty DomainSections after filtering
+    - [ ] LLM curation only when pool > max_per_domain
+    - [ ] tests/test_curation.py passes (3+ tests)
+    - [ ] Typecheck passes
+
+[ ] US-041: Answer Generation (Sectioned by Domain)
+    - [ ] POST /answer mounted in src/api/routes/answer.py
+    - [ ] Internally calls route, retrieve, curate
+    - [ ] Per-domain Sonnet call with evidence as context
+    - [ ] QueryResponse.sections ordered Safety -> Maintenance -> QC
+    - [ ] Citations built from evidence items
+    - [ ] tests/test_answer.py passes with mocked dependencies
+    - [ ] Typecheck passes
+
+[ ] US-042: Abstain Logic and Origin Disclosure
+    - [ ] Full abstain response when curated result is empty
+    - [ ] Per-domain abstain when Sonnet signals insufficient evidence
+    - [ ] CitationRef includes origin field
+    - [ ] src/api/schemas/ has OriginBadge display labels
+    - [ ] GET /answer/abstain-policy returns policy description
+    - [ ] tests/test_abstain.py passes (2+ tests)
+    - [ ] Typecheck passes
+
+---
+
+## Notes
+(Agent appends learnings here as it works)
+
+---
+
+## Completion Signal
+(When all stories done and verified, agent writes the delivered tag here)
