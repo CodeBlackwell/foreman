@@ -16,8 +16,11 @@ venv/
 node_modules/
 dist/
 
-# Local data / graph dumps
+# Local data / graph dumps (raw seed files are tracked)
 data/
+!data/raw/
+!data/FORMAT.md
+!data/seed.py
 *.db
 *.sqlite
 
