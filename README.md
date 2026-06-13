@@ -6,6 +6,8 @@ A supervisor asks a question. **foreman** routes it to the correct source (safet
 
 Live demo: [foreman.codeblackwell.ai](https://foreman.codeblackwell.ai)
 
+![foreman demo](docs/demo.png)
+
 ## The idea in one line
 
 Build a contextual document tree (structural hierarchy plus recursive summaries plus context-augmented leaves), fold it into a knowledge graph with cross-domain edges, route each question to its entry domain, then traverse the graph to assemble a grounded, cited answer.
