@@ -21,3 +21,7 @@ setup-indexes:
 
 demo:
     uv run python scripts/demo.py
+
+deploy:
+    git push origin master
+    ssh root@5.78.198.79 "cd /opt/foreman && git pull && docker compose up -d --build"

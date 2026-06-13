@@ -1,7 +1,9 @@
 import requests
 import streamlit as st
 
-API = "http://localhost:8001"
+import os
+
+API = os.environ.get("API_URL", "http://localhost:8001")
 ABSTAIN_THRESHOLD = 0.70
 
 DOMAIN_COLORS = {
